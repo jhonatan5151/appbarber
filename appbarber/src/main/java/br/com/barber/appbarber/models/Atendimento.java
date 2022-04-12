@@ -1,22 +1,21 @@
 package br.com.barber.appbarber.models;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import java.util.Calendar;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Atendimento {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "horario",nullable = false)
-    private Calendar horario;
+    private LocalDateTime horario;
     @OneToOne
     private Usuario cliente;
-    public Atendimento(Calendar horario) {
-        this.horario = horario;
+
+    public Atendimento(int ano, int mes, int dia, int horas, int minutos) {
+        horario = LocalDateTime.of(ano, mes, dia, horas, minutos);
     }
 
     public Atendimento() {
@@ -32,11 +31,11 @@ public class Atendimento {
         return id;
     }
 
-    public Calendar getHorario() {
+    public LocalDateTime getHorario() {
         return horario;
     }
 
-    public void setHorario(Calendar horario) {
+    public void setHorario(LocalDateTime horario) {
         this.horario = horario;
     }
 }

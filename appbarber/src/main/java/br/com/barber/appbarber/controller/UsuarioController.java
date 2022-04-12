@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -25,6 +23,8 @@ public class UsuarioController {
     @RequestMapping(value = "/sobre")
     public List<UsuarioDTO> sobre() {
         List<Usuario> usuarios = usuarioRepository.findAll();
+        Usuario usuario = new Usuario("jessy",12,"123@email.com","123456");
+        usuarioRepository.save(usuario);
 
         return UsuarioDTO.converterDto(usuarios);
     }
