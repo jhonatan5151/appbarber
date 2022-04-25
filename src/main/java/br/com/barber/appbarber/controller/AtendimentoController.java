@@ -31,6 +31,11 @@ public class AtendimentoController {
         Optional<Atendimento> horario = atendimentoRepository.findById(id);
         return horario;
     }
+    @RequestMapping(value = "deletarhorarios/{id}", method = RequestMethod.DELETE)
+    public String deletarHorario(@PathVariable int id){
+        atendimentoRepository.deleteById(id);
+        return "Horario deletado";
+    }
 
 
 }
