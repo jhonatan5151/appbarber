@@ -6,6 +6,7 @@ import br.com.barber.appbarber.models.form.UsuarioForm;
 import br.com.barber.appbarber.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,9 +35,16 @@ public class UsuarioController {
         return "Usuario Cadastrado";
     }
     
-    @RequestMapping(value = "/deletarusuario/{id}")
+    @RequestMapping(value = "/deletarusuario/{id}", method = RequestMethod.DELETE)
     public String deletarUsuario(@PathVariable int id){
     	usuarioRepository.deleteById(id);
     	return "Usuario Deletado";
+    }
+    
+    @RequestMapping(value = "/buscarpornome/{nome}", method = RequestMethod.GET)
+    public List<UsuarioDTO> buscarporNome(@PathVariable String nome){
+    	List<Usuario> usuarios = usuarioRepository.buscarPorNome(nome);
+    	List<UsuarioDTO> usuariosDTO = UsuarioDTO.converterDto(usuarios);
+		return usuariosDTO;    	
     }
 }
