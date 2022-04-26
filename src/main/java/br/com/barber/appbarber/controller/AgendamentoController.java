@@ -5,6 +5,8 @@ import br.com.barber.appbarber.models.AtendimentoDTO;
 import br.com.barber.appbarber.models.form.AgendamentoForm;
 import br.com.barber.appbarber.repository.AtendimentoRepository;
 import br.com.barber.appbarber.repository.UsuarioRepository;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
