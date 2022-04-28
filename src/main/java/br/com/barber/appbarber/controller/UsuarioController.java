@@ -25,7 +25,7 @@ public class UsuarioController {
 
     @RequestMapping("/")
     public final String teste() {
-        return "OLA MUNdo";
+        return "Bem Vindo à Barbearia";
     }
 
     @RequestMapping(value = "/cadastrarusuario", method = RequestMethod.POST)
