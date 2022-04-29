@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 @RestController
 public class AtendimentoController {
 
@@ -16,7 +18,7 @@ public class AtendimentoController {
     private AtendimentoRepository atendimentoRepository;
 
     @RequestMapping(value="/cadastrarhorario", method = RequestMethod.POST)
-    public String cadastrarHorario(@RequestBody AtendimentoForm form){
+    public String cadastrarHorario(@RequestBody @Valid AtendimentoForm form){
         Atendimento horario = form.criarHorario();
         atendimentoRepository.save(horario);
         return "Cadastrado";

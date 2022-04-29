@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 @RestController
@@ -29,7 +30,7 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "/cadastrarusuario", method = RequestMethod.POST)
-    public String cadastrarUsuario(@RequestBody  UsuarioForm form){
+    public String cadastrarUsuario(@RequestBody  @Valid UsuarioForm form){
         Usuario usuario = form.cadastrarUsuario();
         usuarioRepository.save(usuario);
         return "Usuario Cadastrado";
@@ -47,4 +48,23 @@ public class UsuarioController {
     	List<UsuarioDTO> usuariosDTO = UsuarioDTO.converterDto(usuarios);
 		return usuariosDTO;    	
     }
+    
+    @RequestMapping(value = "/listarusuarios", method = RequestMethod.GET)
+    public List<UsuarioDTO> listarUsuarios(){
+    	List<Usuario> usuarios = usuarioRepository.findAll();
+    	List<UsuarioDTO> usuariosDTO = UsuarioDTO.converterDto(usuarios);
+		return usuariosDTO;    	
+	}
+   
 }
+
+
+
+
+
+
+
+
+
+
+

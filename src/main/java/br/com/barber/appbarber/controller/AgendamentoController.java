@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 
 @RestController
@@ -26,7 +27,7 @@ public class AgendamentoController {
 
     @RequestMapping(value = "agendar", method = RequestMethod.PATCH)
     @Transactional
-    public ResponseEntity<AtendimentoDTO> agendar(@RequestBody AgendamentoForm form){
+    public ResponseEntity<AtendimentoDTO> agendar(@RequestBody @Valid AgendamentoForm form){
         Atendimento horarioAgendado = Atendimento.agendar(form.getIdUsuario(), usuarioRepository, form.getIdHorario(), atendimentoRepository);
         return ResponseEntity.ok(new AtendimentoDTO(horarioAgendado));
     }

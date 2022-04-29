@@ -1,8 +1,12 @@
 package br.com.barber.appbarber.models.form;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import br.com.barber.appbarber.models.Atendimento;
 
 public class AtendimentoForm {
+	@NotNull @NotEmpty
     private int ano, mes, dia, horas, minutos;
 
     public AtendimentoForm(int ano, int mes, int dia, int horas, int minutos) {
